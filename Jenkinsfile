@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-      pollSCM('* * * * * *')
+      pollSCM('* * * * *')
     }
     stages {
     //Don't need checkout stage when Jenkinsfile is provided by repo itself
