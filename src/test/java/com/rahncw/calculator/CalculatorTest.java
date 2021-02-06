@@ -3,6 +3,9 @@ package com.rahncw.calculator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
+/**
+ * useless javadoc
+ */
 public class CalculatorTest {
 
   @Test
