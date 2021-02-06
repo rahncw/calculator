@@ -16,6 +16,7 @@
 <module name = "Checker">
   <property name="charset" value="UTF-8"/>
 
+  <!-- set value to "error" to have build fail instead of warn -->
   <property name="severity" value="warning"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
