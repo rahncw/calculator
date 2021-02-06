@@ -14,6 +14,12 @@ public class CalculatorTest {
     Assertions.assertEquals(calculator.sum(5, 3), 8);
   }
 
+  @Test
+  public void testDiff() {
+    Calculator calculator = new Calculator();
+    Assertions.assertEquals(calculator.sum(5, 3), 2);
+  }
+
   public static void main(String[] args) {
 
   }
