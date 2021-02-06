@@ -2,6 +2,9 @@ package com.rahncw.calculator;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * this is a javadoc.
+ */
 @Service
 public class Calculator {
 
