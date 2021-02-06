@@ -18,6 +18,7 @@ public class CalculatorTest {
   public void testDiff() {
     Calculator calculator = new Calculator();
     Assertions.assertEquals(calculator.diff(5, 3), 2);
+    Assertions.assertEquals(calculator.diff(3, 5), -2);
   }
 
   public static void main(String[] args) {
