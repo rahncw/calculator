@@ -12,7 +12,6 @@ public class CalculatorTest {
   public void testSum() {
     Calculator calculator = new Calculator();
     Assertions.assertEquals(calculator.sum(5, 3), 8);
-    Assertions.assertEquals(calculator.sum(-5, 3), -2);
   }
 
   @Test
