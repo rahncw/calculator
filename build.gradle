@@ -3,8 +3,10 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
     id 'jacoco'
+	id 'checkstyle'
 }
 
+//apply plugin: 'checkstyle'
 //apply plugin: 'jacoco'
 
 group = 'com.rahncw'
@@ -22,6 +24,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
 //	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+//	checkstyle 'com.puppycrawl.tools:checkstyle:8.4'
 }
 
 test {
@@ -36,4 +39,9 @@ jacocoTestCoverageVerification {
 			}
 		}
 	}
+}
+
+checkstyle {
+	configFile file('config/checkstyle/checkstyle.xml')
+	toolVersion '8.40'
 }
