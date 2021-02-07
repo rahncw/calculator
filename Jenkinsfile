@@ -40,7 +40,23 @@ pipeline {
                 reportFiles: 'main.html',
                 reportName: 'checkstyle Static Analysis Report'
             ])
-
+          }
+        }
+        // build the jar file
+        stage('Package') {
+          steps {
+          sh './gradlew build'
+          }
+        }
+        // build the docker image
+        stage('DockerBuild') {
+          steps {
+            sh 'docker build -t localhost:5000/calculator -f docker_images/ubuntu_calc/Dockerfile .'
+          }
+        }
+        stage('DockerPush') {
+          steps {
+            sh 'docker push localhost:5000/calculator'
           }
         }
     }
