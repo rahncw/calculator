@@ -66,6 +66,7 @@ pipeline {
         }
         stage('AcceptanceTest') {
           steps {
+            sleep 10
             sh 'python3 acceptance_tests/acceptance.py'
           }
         }
