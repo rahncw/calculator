@@ -59,5 +59,15 @@ pipeline {
             sh 'docker push localhost:5000/calculator'
           }
         }
+        stage('DeployToStaging') {
+          steps {
+            sh 'docker run -d --rm -p 8765:8083 --name calculator --localhost:5000/calculator'
+          }
+        }
+        stage('AcceptanceTest') {
+          steps {
+            sh 'python3 acceptance_tests/acceptance.py'
+          }
+        }
     }
 }
