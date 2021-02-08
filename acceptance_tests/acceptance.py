@@ -7,7 +7,9 @@ import requests
 # container itself and we need to go "out" to the docker host machine
 # TODO - figure out docker network to handle the URL better
 def get_url(a, b, func):
-    return f'http://192.168.2.35:8083/{func}?a={a}&b={b}'
+    #below only works in python 3.6+
+    # return f'http://192.168.2.35:8083/{func}?a={a}&b={b}'
+    return 'http://192.168.2.35:8083/%s?a=%d&b=%d' % (func, a, b)
 
 
 sum_response = requests.get(get_url(2, 7, 'sum'))
