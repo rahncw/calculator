@@ -61,7 +61,7 @@ pipeline {
         }
         stage('DeployToStaging') {
           steps {
-            sh 'docker run -d --rm -p 8765:8083 --name calculator --localhost:5000/calculator'
+            sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
           }
         }
         stage('AcceptanceTest') {
@@ -69,5 +69,10 @@ pipeline {
             sh 'python3 acceptance_tests/acceptance.py'
           }
         }
+    }
+    post {
+      always {
+        sh "docker stop calculator"
+      }
     }
 }
