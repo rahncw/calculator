@@ -51,17 +51,20 @@ pipeline {
         // build the docker image
         stage('DockerBuild') {
           steps {
-            sh 'docker build -t localhost:5000/calculator -f docker_images/ubuntu_calc/Dockerfile .'
+            sh 'docker build -t rahncw/calculator -f docker_images/ubuntu_calc/Dockerfile .'
+//             sh 'docker build -t localhost:5000/calculator -f docker_images/ubuntu_calc/Dockerfile .'
           }
         }
         stage('DockerPush') {
           steps {
-            sh 'docker push localhost:5000/calculator'
+            sh 'docker push rahncw/calculator'
+//             sh 'docker push localhost:5000/calculator'
           }
         }
         stage('DeployToStaging') {
           steps {
-            sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
+            sh 'docker run -d --rm -p 8083:8083 --name calculator rahncw/calculator'
+//             sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
           }
         }
         stage('AcceptanceTest') {
