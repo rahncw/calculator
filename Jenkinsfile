@@ -49,6 +49,8 @@ pipeline {
           }
         }
         // build the docker image
+        // TODO - consider use the docker pipeline syntax for the docker actions -
+        // see https://stackoverflow.com/questions/54446001/docker-push-in-jenkins-denied-requested-access-to-the-resource-is-denied
         stage('DockerBuild') {
           steps {
             sh 'docker build -t rahncw/calculator -f docker_images/ubuntu_calc/Dockerfile .'
