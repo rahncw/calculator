@@ -4,6 +4,13 @@
 -had to change some docker config file to listen on all ports for the cloud thing to work 
 (it's in "Continous Delivery With Docker and Jenkins") and then there's some command to reload the
 config without restarting the docker service daemon
+---
+chris@Chris-PC:~/Dev/calculator$ diff /lib/systemd/system/docker.service.20200204.0 /lib/systemd/system/docker.service
+13c13
+< ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+---
+> ExecStart=/usr/bin/dockerd -H 0.0.0.0:2375 -H fd:// --containerd=/run/containerd/containerd.sock
+---
 -had to add the following configuration to src/main/resources/application.properties
 "server.port=8083"
 -to run jenkins master 
