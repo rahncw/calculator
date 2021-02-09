@@ -57,7 +57,9 @@ pipeline {
         }
         stage('DockerPush') {
           steps {
-            sh 'docker push rahncw/calculator'
+            withDockerRegistry([credentialsId: 'dockerhub', url: '']) {
+              sh 'docker push rahncw/calculator'
+            }
 //             sh 'docker push localhost:5000/calculator'
           }
         }
