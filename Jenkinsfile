@@ -67,7 +67,7 @@ pipeline {
     }
     stage('DockerPush') {
       steps {
-        withCredentials([credentialsId: 'dockerhub']) {
+        withDockerRegistry([credentialsId: 'dockerhub', url: '']) {
           sh "docker push ${env.imageName}"
         }
 //             sh 'docker push localhost:5000/calculator'
