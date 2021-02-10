@@ -6,6 +6,9 @@ pipeline {
   triggers {
     pollSCM('* * * * *')
   }
+  environment {
+    imageName = "rahncw/calculator:${env.BUILD_ID}"
+  }
   //set version to currentBuild.number or currentBuild.id
   stages {
 //    Don't need checkout stage when Jenkinsfile is provided by repo itself
@@ -52,27 +55,26 @@ pipeline {
         sh './gradlew build'
       }
     }
-    def imageName = "rahncw/calculator:${env.BUILD_ID}"
     // build the docker image
     // TODO - consider use the docker pipeline syntax for the docker actions -
     // see https://stackoverflow.com/questions/54446001/docker-push-in-jenkins-denied-requested-access-to-the-resource-is-denied
     stage('DockerBuild') {
       steps {
-        sh "docker build -t ${imageName} -f docker_images/ubuntu_calc/Dockerfile ."
+        sh "docker build -t ${env.imageName} -f docker_images/ubuntu_calc/Dockerfile ."
 //             sh 'docker build -t localhost:5000/calculator -f docker_images/ubuntu_calc/Dockerfile .'
       }
     }
     stage('DockerPush') {
       steps {
         withDockerRegistry([credentialsId: 'dockerhub', url: '']) {
-          sh "docker push ${imageName}"
+          sh "docker push ${env.imageName}"
         }
 //             sh 'docker push localhost:5000/calculator'
       }
     }
     stage('DeployToStaging') {
       steps {
-        sh "docker run -d --rm -p 8083:8083 --name calculator ${imageName}"
+        sh "docker run -d --rm -p 8083:8083 --name calculator ${env.imageName}"
 //             sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
       }
     }
