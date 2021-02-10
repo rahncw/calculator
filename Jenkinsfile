@@ -8,6 +8,7 @@ pipeline {
   }
   environment {
     imageName = "rahncw/calculator:${env.BUILD_ID}"
+    containerName = "calculator-${env.BUILD_ID}"
   }
   //set version to currentBuild.number or currentBuild.id
   stages {
@@ -74,7 +75,7 @@ pipeline {
     }
     stage('DeployToStaging') {
       steps {
-        sh "docker run -d --rm -p 8083:8083 --name calculator ${env.imageName}"
+        sh "docker run -d --rm -p 8083:8083 --name ${containerName} ${env.imageName}"
 //             sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
       }
     }
