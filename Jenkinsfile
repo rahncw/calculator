@@ -75,7 +75,7 @@ pipeline {
     }
     stage('DeployToStaging') {
       steps {
-        sh "docker run -d --rm -p 8083:8083 --name ${containerName} ${env.imageName}"
+        sh "docker run -d --rm -p 8083:8083 --name ${env.containerName} ${env.imageName}"
 //             sh 'docker run -d --rm -p 8083:8083 --name calculator localhost:5000/calculator'
       }
     }
@@ -88,7 +88,7 @@ pipeline {
   }
   post {
     always {
-      sh "docker stop calculator"
+      sh "docker stop ${env.containerName}"
     }
   }
 }
